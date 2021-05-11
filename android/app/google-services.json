@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "982516290596",
+    "project_id": "tufit-eb31f",
+    "storage_bucket": "tufit-eb31f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982516290596:android:e63e6dcd67ab24c7e534b1",
+        "android_client_info": {
+          "package_name": "com.example.tufit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982516290596-utc6666s0kmgqu4ihjplsku56upjblji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-zXcz2Vlv4pbx2FS4yULbbuK0aMYQtxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982516290596-utc6666s0kmgqu4ihjplsku56upjblji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
