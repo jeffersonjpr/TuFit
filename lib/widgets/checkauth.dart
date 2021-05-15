@@ -9,7 +9,7 @@ class CheckAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => AuthService.to.userIsAuthenticated.value
-        ? HomePage(title: 'ZéPaulo')
+        ? HomePage(title: 'ZéPaulo') //Colocar Nome do usúario aqui
         : LoginPage());
   }
 }

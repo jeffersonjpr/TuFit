@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tufit/pages/cadastra_alimento_page.dart';
 import 'package:tufit/services/auth_services.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:
+        elevation: 0,
+        toolbarHeight: 80,
+        leading: //colocar imagem de perfil do usuário aqui
             Image.network('https://i.imgur.com/pmWblEp.png', fit: BoxFit.cover),
         title: Text(widget.title),
       ),
@@ -65,7 +68,21 @@ class _HomePageState extends State<HomePage> {
             ),
             Spacer(),
             //IconButton(icon: Icon(Icons.search), onPressed: () {}),
-            IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+            PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              itemBuilder: (_) => [
+                PopupMenuItem(
+                    child: ListTile(
+                  leading: Icon(Icons.fastfood),
+                  title: Text('Cadastrar Alimento'),
+                  onTap: () {
+                    //Atalho para tela de cadastro de alimento
+                    Navigator.pop(context);
+                    Get.to(() => CadastraAlimento());
+                  },
+                )),
+              ],
+            ),
           ],
         ),
       ),
