@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tufit/pages/cadastra_alimento_page.dart';
+import 'package:tufit/pages/perfil_page.dart';
 import 'package:tufit/services/auth_services.dart';
 import 'package:get/get.dart';
 
@@ -28,8 +29,23 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 80,
-        leading: //colocar imagem de perfil do usuário aqui
-            Image.network('https://i.imgur.com/pmWblEp.png', fit: BoxFit.cover),
+        leading: GestureDetector(
+          child: Padding(
+              padding: EdgeInsets.all(1),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      //Foto de perfil do usuário
+                      image: NetworkImage('https://i.imgur.com/pmWblEp.png'),
+                      fit: BoxFit.fill),
+                ),
+              )),
+          onTap: () {
+            //ir para tela de perfil (mudar foto de perfil)
+            Get.to(() => PerfilPage());
+          },
+        ),
         title: Text(widget.title),
       ),
       body: Center(
