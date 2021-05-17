@@ -17,6 +17,7 @@ class CadastraAlimento extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastrar Alimento'),
+        backgroundColor: Colors.deepPurple,
       ),
       body: Form(
         key: _formKey,
@@ -146,6 +147,9 @@ class CadastraAlimento extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               margin: EdgeInsets.all(24),
               child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.deepPurple)),
                 //botão de salvar as passivas
                 onPressed: () {
                   //oque acontece quando o botão salvar é clicado

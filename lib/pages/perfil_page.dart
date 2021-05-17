@@ -72,6 +72,7 @@ class _PerfilPageState extends State<PerfilPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Perfil'),
+          backgroundColor: Colors.deepPurple,
         ),
         body: Center(
           child: Row(
@@ -103,6 +104,9 @@ class _PerfilPageState extends State<PerfilPage> {
                     padding:
                         EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                     child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.deepPurple)),
                       onPressed: () => Get.to(() =>
                           CameraCamera(onFile: (file) => ShowPreview(file))),
                       child: Row(
@@ -121,6 +125,9 @@ class _PerfilPageState extends State<PerfilPage> {
                     padding:
                         EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                     child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.deepPurple)),
                       onPressed: () => getFileFromGallery(),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

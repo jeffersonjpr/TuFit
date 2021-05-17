@@ -13,6 +13,7 @@ class LoginPage extends StatelessWidget {
         elevation: 0,
         toolbarHeight: 80,
         title: Text("Bem Vindo!"),
+        backgroundColor: Colors.deepPurple,
         actions: [
           TextButton(
             child: Text("Cadastre-se"),
@@ -74,6 +75,9 @@ class LoginPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.deepPurple)),
                         onPressed: () {
                           if (controller.formKey.currentState.validate()) {
                             controller.login();
