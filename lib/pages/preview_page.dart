@@ -43,7 +43,7 @@ class PreviewPage extends StatelessWidget {
                       padding: EdgeInsets.all(32),
                       child: CircleAvatar(
                         radius: 32,
-                        backgroundColor: Colors.black.withOpacity(0.5),
+                        backgroundColor: Colors.deepPurple.withOpacity(0.5),
                         child: IconButton(
                           icon: Icon(
                             Icons.check,
@@ -64,7 +64,7 @@ class PreviewPage extends StatelessWidget {
                       padding: EdgeInsets.all(32),
                       child: CircleAvatar(
                         radius: 32,
-                        backgroundColor: Colors.black.withOpacity(0.5),
+                        backgroundColor: Colors.deepPurple.withOpacity(0.5),
                         child: IconButton(
                           icon: Icon(
                             Icons.close,

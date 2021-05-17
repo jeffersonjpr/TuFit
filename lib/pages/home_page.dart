@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
     downloadUrlimagem();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
         elevation: 0,
         toolbarHeight: 80,
         leading: GestureDetector(
@@ -129,8 +130,10 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton:
-          FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.deepPurple,
+          child: Icon(Icons.add),
+          onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

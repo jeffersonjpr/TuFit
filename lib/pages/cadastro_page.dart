@@ -13,7 +13,7 @@ class CadastroPage extends StatelessWidget {
   final _idade = TextEditingController();
   final _altura = TextEditingController();
   final _peso = TextEditingController();
-  final _gernero = TextEditingController();
+  final _genero = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -21,6 +21,7 @@ class CadastroPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Cadastre-se'),
+          backgroundColor: Colors.deepPurple,
         ),
         body: Obx(() => controller.isLoading.value
             ? Center(child: CircularProgressIndicator())
@@ -113,7 +114,7 @@ class CadastroPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 24.0),
                       child: TextFormField(
-                        controller: _gernero,
+                        controller: _genero,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'genero',
@@ -172,6 +173,9 @@ class CadastroPage extends StatelessWidget {
                       alignment: Alignment.bottomCenter,
                       margin: EdgeInsets.all(24),
                       child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.deepPurple)),
                         //botão de salvar as passivas
                         onPressed: () {
                           //oque acontece quando o botão salvar é clicado
