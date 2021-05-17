@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
-
+  String url = "https://i.imgur.com/ucXD9eX.png";
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                       //Foto de perfil do usuário
-                      image: NetworkImage('https://i.imgur.com/pmWblEp.png'),
+                      image: NetworkImage(url),
                       fit: BoxFit.fill),
                 ),
               )),
