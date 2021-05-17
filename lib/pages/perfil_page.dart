@@ -15,7 +15,8 @@ import 'package:tufit/widgets/anexo.dart';
 class PerfilPage extends StatefulWidget {
   //implementar o acesso ao db
   //implementar o firebase.storage para guardar a imagem
-
+  String url;
+  PerfilPage(this.url);
   //Arquivo da camera abaixo
   @override
   _PerfilPageState createState() => _PerfilPageState();
@@ -24,7 +25,7 @@ class PerfilPage extends StatefulWidget {
 class _PerfilPageState extends State<PerfilPage> {
   File arquivo;
   final picker = ImagePicker();
-  String url = "https://i.imgur.com/ucXD9eX.png";
+  //String url = "https://i.imgur.com/ucXD9eX.png";
 
   Future getFileFromGallery() async {
     final file = await picker.getImage(source: ImageSource.gallery);
@@ -54,7 +55,7 @@ class _PerfilPageState extends State<PerfilPage> {
     UploadTask utask = ref.putFile(arquivo);
     utask.then((res) {
       print("IMAGEM ABAIXO");
-      url = res.ref.getDownloadURL().toString();
+      widget.url = res.ref.getDownloadURL().toString();
     });
   }
 
@@ -63,7 +64,7 @@ class _PerfilPageState extends State<PerfilPage> {
     String downloadUrl =
         await storage.ref("avatar" + userIDid() + ".jpg").getDownloadURL();
     setState(() {
-      url = downloadUrl;
+      widget.url = downloadUrl;
     });
   }
 
@@ -95,7 +96,7 @@ class _PerfilPageState extends State<PerfilPage> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 //Foto de perfil do usuário
-                                image: NetworkImage(url),
+                                image: NetworkImage(widget.url),
                                 fit: BoxFit.fill),
                           ),
                         ))),

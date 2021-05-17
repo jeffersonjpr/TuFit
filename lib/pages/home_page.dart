@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               )),
           onTap: () {
             //ir para tela de perfil (mudar foto de perfil)
-            Get.to(() => PerfilPage());
+            Get.to(() => PerfilPage(url));
           },
         ),
         title: Text(widget.title),
