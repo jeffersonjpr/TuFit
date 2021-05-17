@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tufit/pages/cadastra_alimento_page.dart';
 import 'package:tufit/pages/perfil_page.dart';
 import 'package:tufit/services/auth_services.dart';
 import 'package:get/get.dart';
+import 'package:tufit/pages/perfil_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -17,14 +20,31 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
   String url = "https://i.imgur.com/ucXD9eX.png";
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  String userIDid() {
+    final User user = auth.currentUser;
+    return user.uid;
+  }
+
+  Future downloadUrlimagem() async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    String downloadUrl =
+        await storage.ref("avatar" + userIDid() + ".jpg").getDownloadURL();
+    setState(() {
+      url = downloadUrl;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    downloadUrlimagem();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
