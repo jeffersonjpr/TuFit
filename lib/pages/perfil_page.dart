@@ -1,33 +1,140 @@
+import 'dart:io';
+
+import 'package:camera_camera/camera_camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:tufit/database/db_firestore.dart';
 
-class PerfilPage extends StatelessWidget {
+import 'package:tufit/pages/preview_page.dart';
+
+class PerfilPage extends StatefulWidget {
   //implementar o acesso ao db
   //implementar o firebase.storage para guardar a imagem
+
+  //Arquivo da camera abaixo
+  @override
+  _PerfilPageState createState() => _PerfilPageState();
+}
+
+class _PerfilPageState extends State<PerfilPage> {
+  File arquivo;
+  String url = "https://i.imgur.com/ucXD9eX.png";
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  String userIDid() {
+    final User user = auth.currentUser;
+    return user.uid;
+  }
+
+  ShowPreview(file) async {
+    file = await Get.to(() => PreviewPage(file: file));
+    if (file != null) {
+      setState(() => arquivo = file);
+      Get.back();
+    }
+  }
+
+  Future uploadImageToFirebase(BuildContext context) async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref = storage.ref().child("avatar" + userIDid() + ".jpg");
+    UploadTask utask = ref.putFile(arquivo);
+    utask.then((res) {
+      print("IMAGEM ABAIXO");
+      url = res.ref.getDownloadURL().toString();
+    });
+  }
+
+  Future downloadUrlimagem() async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    String downloadUrl =
+        await storage.ref("avatar" + userIDid() + ".jpg").getDownloadURL();
+    setState(() {
+      url = downloadUrl;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Perfil'),
-      ),
-      body: ListView(
-        children: [
-          Padding(
-              padding: EdgeInsets.all(24),
-              child: Container(
-                height: 350,
-                width: 350,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      //Foto de perfil do usuário
-                      image: NetworkImage('https://i.imgur.com/pmWblEp.png'),
-                      fit: BoxFit.fill),
-                ),
-              )),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Perfil'),
+        ),
+        body: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                      padding: EdgeInsets.all(24),
+                      child: Container(
+                        height: 300,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              //Foto de perfil do usuário
+                              image: NetworkImage(url),
+                              fit: BoxFit.fill),
+                        ),
+                      )),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                    child: ElevatedButton(
+                      onPressed: () => Get.to(() =>
+                          CameraCamera(onFile: (file) => ShowPreview(file))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.camera_alt),
+                          Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Text("Foto", style: TextStyle(fontSize: 20)),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.green[800]),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(21.0),
+                                      side: BorderSide(color: Colors.black)))),
+                      onPressed: () {
+                        //uploadImageToFirebase(context);
+                        downloadUrlimagem();
+                        Get.back();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.check),
+                          Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child:
+                                Text("Salvar", style: TextStyle(fontSize: 20)),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ));
   }
 }

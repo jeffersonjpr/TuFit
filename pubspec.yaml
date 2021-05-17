@@ -20,6 +20,10 @@ dependencies:
   firebase_auth: ^1.1.4
   cloud_firestore: ^2.1.0
 
+  firebase_storage: ^8.0.6
+  camera_camera: ^2.0.1
+  image_picker: ^0.7.4
+
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
