@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CadastraAlimento extends StatelessWidget {
   final _nome = TextEditingController();
@@ -33,12 +32,8 @@ class CadastraAlimento extends StatelessWidget {
                   labelText: 'Nome',
                 ),
                 keyboardType: TextInputType.name,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "Informe o nome do alimento !";
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    value.isEmpty ? "Informe o nome do alimento !" : null,
               ),
             ),
             Padding(
@@ -66,12 +61,8 @@ class CadastraAlimento extends StatelessWidget {
                   labelText: 'Quantidade (ml / gr)',
                 ),
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "Informe a quantidade !";
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    value.isEmpty ? "Informe a quantidade  !" : null,
               ),
             ),
             Padding(
@@ -83,12 +74,8 @@ class CadastraAlimento extends StatelessWidget {
                   labelText: 'Calorias',
                 ),
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "Informe as calorias !";
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    value.isEmpty ? "Informe a quantidade de calorias !" : null,
               ),
             ),
             Padding(
@@ -100,12 +87,9 @@ class CadastraAlimento extends StatelessWidget {
                   labelText: 'Carboidratos (gr)',
                 ),
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "Informe os Carboidratos !";
-                  }
-                  return null;
-                },
+                validator: (value) => value.isEmpty
+                    ? "Informe a quantidade de carboidratos !"
+                    : null,
               ),
             ),
             Padding(
@@ -117,12 +101,8 @@ class CadastraAlimento extends StatelessWidget {
                   labelText: 'Proteínas (gr)',
                 ),
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "Informe as Proteínas !";
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    value.isEmpty ? "Informe as proteínas !" : null,
               ),
             ),
             Padding(
@@ -134,12 +114,8 @@ class CadastraAlimento extends StatelessWidget {
                   labelText: 'Gorduras (gr)',
                 ),
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "Informe as Gorduras !";
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    value.isEmpty ? "Informe as Gorduras !" : null,
               ),
             ),
             Expanded(
