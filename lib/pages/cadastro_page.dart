@@ -33,19 +33,15 @@ class CadastroPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(24),
                       child: TextFormField(
-                          controller: _email,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email',
-                          ),
-                          keyboardType: TextInputType.name,
-                          validator: (value) {
-                            if (value.isEmail) {
-                              return null;
-                            } else {
-                              return "Email Invalido !";
-                            }
-                          }),
+                        controller: _email,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Email',
+                        ),
+                        keyboardType: TextInputType.name,
+                        validator: (value) =>
+                            value.isEmail ? null : 'Email inválido',
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
@@ -82,12 +78,8 @@ class CadastroPage extends StatelessWidget {
                           labelText: 'Nome',
                         ),
                         keyboardType: TextInputType.name,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return "Informe o Nome !";
-                          }
-                          return null;
-                        },
+                        validator: (value) =>
+                            value.isEmpty ? 'Nome Invalido' : null,
                       ),
                     ),
                     Padding(
@@ -120,12 +112,8 @@ class CadastroPage extends StatelessWidget {
                           labelText: 'genero',
                         ),
                         keyboardType: TextInputType.name,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return "Informe o Genero !";
-                          }
-                          return null;
-                        },
+                        validator: (value) =>
+                            value.isEmpty ? "Informe o Genero !" : null,
                       ),
                     ),
                     Padding(
